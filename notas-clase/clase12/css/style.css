@@ -1,0 +1,15 @@
+p {
+    font-family:courier;
+    font-size: 16px;
+    border:1px solid blue
+}
+
+p.clase1{
+    color:red;
+}
+
+p.clase2{
+    color:rgb(90, 35, 179);
+    border:1px solid rgb(184, 32, 32)
+}
+

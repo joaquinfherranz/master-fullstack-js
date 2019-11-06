@@ -1,0 +1,28 @@
+notas clase 5
+
+undefined > no devuelve nada en la consola
+	dato todavía no definido
+
+un null también es un objeto
+
+typeof : tipo de dato
+
+let
+const : constante
+
+function como caja negra
+
+primero lee todo el código y define la funciones declaradas
+luego ejecuta el código
+
+a un texto no le puedes aplicar un ++
+
+use strict para zonas / programas críticas
+
+toFixed(numero)
+para devolver con 2 decimales
+
+slack
+
+/giphy hola
+
