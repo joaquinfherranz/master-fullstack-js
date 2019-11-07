@@ -5,70 +5,75 @@
 //- Si la figura no está, no se puede borrar
 
 // Añadir links CSS
-var linkStyle= document.createElement("link")
+let linkStyle= document.createElement("link")
 linkStyle.setAttribute("rel","stylesheet")
 linkStyle.setAttribute("href", "style.css")
 linkStyle.setAttribute("TYPE","text/css")
-
 document.head.appendChild(linkStyle);
 
+let CSSSelectors = [];
 linkStyle.addEventListener("load", function(){
-    figurasPosibles = Array.from(document.styleSheets[0].rules).map(rule=> rule.selectorText);
+    // Solo funciona con un servidor local
+    // politica de seguridad CORS
+    CSSSelectors = Array.from(document.styleSheets[0].rules).map(rule=> rule.selectorText);
 });
 
-let figurasPosibles = [];
-// (function() {
-//     figurasPosibles = document.styleSheets[0].rules.map(rule=> rule.selectorText);
-// })();
-//document.styleSheets[0].rules[0].selectorText
-
-
-
-function getFigura() {
-    let dato = document.getElementById("dato");
-    return document.getElementById("dato").value;
+function getNombreFigura() {
+  return document.getElementById("dato").value;
 }
 
-let botonCrear = document.getElementById("botonCrear");
-botonCrear.addEventListener("click", function(){
-    //<div id="circulo" class="forma"></div>
-    let id = getFigura();
-    if (!id) {
-        alert("Por favor introduzca el nombre de la figura a crear");
-        return false;
-    } 
-    if (figurasPosibles.filter(selector => selector == '#'+id).length==0) {
-        alert(`La figura ${id} no está disponible`);
-        return false;
-    }
-    if (document.getElementById(id)!=null) {
-        alert(`Ya existe un ${id}`);
-        return false;
-    }
-    let figura = document.createElement("div");
-    figura.setAttribute("id", id);
-    figura.setAttribute("class", "forma");
-    document.body.appendChild(figura);
-    return true;
+function esFiguraDisponible (nombreFigura) {
+  return CSSSelectors.some(selector => selector == '#'+nombreFigura);
+}
+
+function getFigura(nombreFigura) {
+  return document.getElementById(nombreFigura);
+}
+
+function addFigura (nombreFigura) {
+  let figura = document.createElement("div");
+  figura.setAttribute("id", nombreFigura);
+  figura.setAttribute("class", "forma");
+  document.body.appendChild(figura);  
+}
+
+function removeFigura(figura) {
+  document.body.removeChild(figura);
+}
+
+document.getElementById("botonCrear").addEventListener("click", function(){
+  //<div id="circulo" class="forma"></div>
+  let nombreFigura = getNombreFigura();
+  
+  if (!nombreFigura) {
+    alert("Por favor introduzca el nombre de la figura a crear");
+    return false;
+  } else if (!esFiguraDisponible(nombreFigura)) {
+    alert(`La figura ${nombreFigura} no está disponible`);
+    return false;
+  } else if (getFigura(nombreFigura)) {
+    alert(`Ya existe la figura ${nombreFigura}`);
+    return false;
+  }
+  
+  addFigura(nombreFigura);
+  return true;
 });
 
-let botonBorrar = document.getElementById("botonBorrar");
-botonBorrar.addEventListener("click", function(){
-    let id = getFigura();
-    let figura = document.getElementById("circulo");
-    document.body.removeChild(figura);
+document.getElementById("botonBorrar").addEventListener("click", function(){
+  let nombreFigura = getNombreFigura();
+
+  if (!nombreFigura) {
+    alert("Por favor introduzca el nombre de la figura a borrar");
+    return false;
+  }
+  
+  let figura = getFigura(nombreFigura);
+  if (!figura) {
+    alert(`No existe la figura ${nombreFigura}`);
+    return false;
+  }
+   
+  removeFigura(figura);
+  return true;
 });
-
-/*
-// Añadir circulo por JS
-var divCirculo= document.createElement("div")
-divCirculo.setAttribute("id","circulo")
-divCirculo.setAttribute("class","forma")
-
-document.body.appendChild(divCirculo)
-*/
-
-
-/*----------------------------------------------*/
-// Como leer el input de insertar
-// Solución JS aquí
