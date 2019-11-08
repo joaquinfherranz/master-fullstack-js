@@ -16,6 +16,7 @@ linkStyle.addEventListener("load", function(){
     // Solo funciona con un servidor local
     // politica de seguridad CORS
     CSSSelectors = Array.from(document.styleSheets[0].rules).map(rule=> rule.selectorText);
+    // Con slice(1) podemos eliminar el primer caracter
 });
 
 function getNombreFigura() {
@@ -23,7 +24,8 @@ function getNombreFigura() {
 }
 
 function esFiguraDisponible (nombreFigura) {
-  return CSSSelectors.some(selector => selector == '#'+nombreFigura);
+  //return CSSSelectors.some(selector => selector == '#'+nombreFigura);
+  return (CSSSelectors.indexOf('#'+nombreFigura) != -1);
 }
 
 function getFigura(nombreFigura) {
