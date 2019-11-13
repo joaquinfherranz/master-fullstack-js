@@ -27,8 +27,8 @@ function peticionPolen(url) {
         for (medida in estacion.mediciones) {
           console.log(medida);
           let medidaDOM = document.createElement("li");
-          medidaDOM.innerHTML=`${medida}: `+ 
-            `día ${estacion.mediciones[medida].fecha},
+          medidaDOM.innerHTML=`${medida}: 
+            día ${estacion.mediciones[medida].fecha},
             valor ${estacion.mediciones[medida].valor},
             resumen ${estacion.mediciones[medida].resumen}`
           listaDOM.appendChild(medidaDOM);
