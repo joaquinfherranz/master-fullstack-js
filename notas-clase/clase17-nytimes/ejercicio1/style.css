@@ -1,0 +1,61 @@
+body {
+  padding-left: 40px;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: darkslategray;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+li {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+article {
+  max-width: 250px;
+  padding: 20px;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: thin;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(87, 87, 87, 0.658);
+}
+
+p.weeks-on-list {
+  font-style: italic;
+}
+
+p.rank {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+img {
+  max-width: 250px;
+}
+
+a {
+  display: inline-block;
+  background-color: orange;
+  color: white;
+  padding: 10px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
