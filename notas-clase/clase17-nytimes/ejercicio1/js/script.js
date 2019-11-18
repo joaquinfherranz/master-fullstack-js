@@ -29,6 +29,9 @@ function getBooks (url) {
     let xmlHttp = new XMLHttpRequest();
 
     xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState === 4) {
+        document.getElementById("loading").style.display="none";
+      }
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
         let respuesta = JSON.parse(xmlHttp.responseText);
         console.info(respuesta);
