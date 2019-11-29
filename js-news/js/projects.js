@@ -17,11 +17,15 @@ const projects = (() => {
     }
   const renderProjectArticle = project => {
     const markup = `
-      <div class="home-ranking">${project.ranking.toString().padStart(2,'0')}</div>
-      <h2>${project.name}</h2>
-      <h3>${project.description}</h3>
-      <div>${project.stargazers_count} <img src="../assets/icons8-star-15.png"></div>
-      <img src="${project.owner.avatar_url}">        
+      <div class="article-ranking">${project.ranking.toString().padStart(2,'0')}</div>
+      <div class="article-description">
+        <h2>${project.name}</h2>
+        <div>${project.description}</div>
+        <div>${project.stargazers_count} <img class="star" src="../assets/icons8-star-15.png"></div>
+      </div>
+      <div class="article-image">
+        <img src="${project.owner.avatar_url}">
+      </div>
     `;
     let articleDOM = document.createElement("article");
     articleDOM.innerHTML = markup;
