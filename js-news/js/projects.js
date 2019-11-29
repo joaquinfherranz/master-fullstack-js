@@ -1,6 +1,6 @@
 const projects = (() => {
   let projectList = [];
-  const getProjects = async (renderProjects) => {
+  const getProjects = async (renderProjects, refreshProjects) => {
     const origin = "https://api.github.com";
     const projectsUrl = origin + "/search/repositories?q=stars:>10000+topic:javascript"
     let response = await fetch(projectsUrl);
@@ -13,8 +13,9 @@ const projects = (() => {
           item.name=='react' ? item.owner.avatar_url="../assets/react-logo-512.png": null;
           return item;
         });
+    refreshProjects(projects);
     renderProjects(projects);
-    }
+  }
   const renderProjectArticle = project => {
     const markup = `
       <div class="article-ranking">${project.ranking.toString().padStart(2,'0')}</div>
@@ -31,10 +32,10 @@ const projects = (() => {
     articleDOM.innerHTML = markup;
     document.querySelector('.home-projects > div').appendChild(articleDOM);
   }
+  const refreshProjects = projects => {
+    projectList = projects;
+  }
   return {
-    setProjects: projects => {
-      projectList = projects;
-    },
     render: element => {
       const projectTemplate = project => {
         return `
@@ -49,7 +50,10 @@ const projects = (() => {
           .filter(project => topRanking ? project.ranking<topRanking+1 : true)
           .map(project => renderProjectArticle(project));
       }
-      getProjects(renderProjects);
+      getProjects(renderProjects, refreshProjects);
+    },
+    getProjects: () => {
+      return projectList;
     }
   }
 })();
