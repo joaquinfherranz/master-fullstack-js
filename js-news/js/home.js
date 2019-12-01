@@ -6,8 +6,9 @@ const home = (() => {
   }
   const renderSetionHeader = section => {
     const markup = `
-      <img src="../assets/${section.image}">
+      <img class="main-image" src="../assets/${section.image}">
       <h1>${section.title}</h1>
+      ${section.loadingData ? '<img class="loading-image" src="../assets/loading-'+section.image+'">' : ''}
     `;
     let sectionDOM = document.createElement("section");
     sectionDOM.classList.add('home', section.className);
@@ -18,7 +19,8 @@ const home = (() => {
     renderSetionHeader({
       className: 'home-projects',
       image: 'projects.png',
-      title: 'Top JavaScript projects on github'
+      title: 'Top JavaScript projects on github',
+      loadingData: true
     });
     projects.renderProjectList(3);
   }
@@ -26,9 +28,9 @@ const home = (() => {
     renderSetionHeader({
       className: 'home-articles',
       image: 'articles.png',
-      title: 'DEV JavaScript articles'
+      title: 'DEV JavaScript articles',
+      loadinData: false
     });
-    //projects.renderProjectList(3);
   }
   return {
     render: element => {

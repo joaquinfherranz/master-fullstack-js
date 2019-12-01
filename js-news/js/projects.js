@@ -6,9 +6,9 @@ const projects = (() => {
       .map(project => setProjectLogo (project));
     return projects;
   }
-  const projectLogos = [
-    {'react': 'react-logo-512.png'}
-  ]
+  const projectLogos = {
+    'react': 'react-logo-512.png'
+  }
   const setProjectLogo = (project) => {
     const logoUrl = projectLogos[project.name] ? '../assets/' + projectLogos[project.name] : project.owner.avatar_url;
     project.logo_url = logoUrl;
@@ -23,7 +23,7 @@ const projects = (() => {
         <div>${project.stargazers_count} <img class="star" src="../assets/icons8-star-15.png"></div>
       </div>
       <div class="article-image">
-        <img src="${project.logo_url}">
+        <img class="logo-image" src="${project.logo_url}">
       </div>
     `;
     let articleDOM = document.createElement("article");
@@ -43,6 +43,7 @@ const projects = (() => {
       const origin = "https://api.github.com";
       const url = origin + "/search/repositories?q=stars:>10000+topic:javascript"  
       const renderProjects = json => {
+        document.querySelector('.home-projects .loading-image').remove();
         let projects = getProjects(json, topRanking)
           .map(project => renderProjectArticle(project));
       }
