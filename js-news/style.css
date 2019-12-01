@@ -18,6 +18,9 @@ h1, h2, h3 {
   margin-top: 0;
   margin-bottom: 0;
 }
+.link {
+  cursor: pointer;
+}
 div.home-body {
   width: 100%;
   display: flex;
@@ -35,6 +38,17 @@ section.home {
 section.home > img.main-image {
   width: 100%;
   height: auto;
+}
+.link-image:hover {
+  transform: scale(1.01);
+  transition: 0.1s;
+}
+.link-image {
+  cursor: pointer;
+  transition: 0.1s;
+}
+section.home > h1 {
+  cursor: pointer;
 }
 @keyframes loading-image {
   0% {width: 40px;margin: 24px;}
@@ -72,13 +86,15 @@ div.article-description > div {
   fill: rgba(0,0,0,.54)!important;
   margin-top: 5px;
 }
-img.star {
-  filter: invert(.54);
+span.star > svg {
+  height: 12px;
+  width: 13px;
 }
 div.article-image > img.logo-image {
   max-width: 60px;
   margin-left: 10px;
   margin-top: 5px;
+  cursor: pointer;
 }
 nav > ul > li {
   display: inline-block

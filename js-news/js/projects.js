@@ -14,19 +14,28 @@ const projects = (() => {
     project.logo_url = logoUrl;
     return project;
   }
+  const starSvg = `    
+    <svg>
+      <path d="M7.438 2.324c.034-.099.09-.099.123 0l1.2 3.53a.29.29 0 0 0 .26.19h3.884c.11 0 .127.049.038.111L9.8 8.327a.271.271 0 0 0-.099.291l1.2 3.53c.034.1-.011.131-.098.069l-3.142-2.18a.303.303 0 0 0-.32 0l-3.145 2.182c-.087.06-.132.03-.099-.068l1.2-3.53a.271.271 0 0 0-.098-.292L2.056 6.146c-.087-.06-.071-.112.038-.112h3.884a.29.29 0 0 0 .26-.19l1.2-3.52z">
+    </svg>
+  `;
+  const getStars = (stars) => {
+    return stars > 1000 ? (stars/1000).toFixed(1)+"k" : stars.toString();
+  }
   const renderProjectArticle = project => {
     const markup = `
       <div class="article-ranking">${project.ranking.toString().padStart(2,'0')}</div>
       <div class="article-description">
-        <h2>${project.name}</h2>
-        <div>${project.description}</div>
-        <div>${project.stargazers_count} <img class="star" src="../assets/icons8-star-15.png"></div>
+        <h2 class="link">${project.name}</h2>
+        <div class="link">${project.description}</div>
+        <div class="link"><span class="star">${starSvg}</span><span>${getStars(project.stargazers_count)}</span></div>
       </div>
       <div class="article-image">
-        <img class="logo-image" src="${project.logo_url}">
+        <img class="logo-image link" src="${project.logo_url}">
       </div>
     `;
     let articleDOM = document.createElement("article");
+    articleDOM.setAttribute("data-project-id", project.id);
     articleDOM.innerHTML = markup;
     document.querySelector('.home-projects').appendChild(articleDOM);
   }
