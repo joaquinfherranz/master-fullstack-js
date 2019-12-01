@@ -74,8 +74,14 @@ const router = (() => {
           : renderElement.innerHTML = `<div>${JSON.stringify(currentRoute)}</div>`;
       }
       currentRoute = calculateCurrentRoute();
-      manageWindowHistory();
-      renderRoute();
+      if (currentRoute.externalLink) {
+        if (currentRoute.externalLink.indexOf("./") == 0) {
+          window.open(window.location.origin + currentRoute.externalLink.substr(1) , '_blank');
+        }        
+      } else {
+        manageWindowHistory();
+        renderRoute();  
+      }      
     }
   }
 })();

@@ -4,8 +4,10 @@ const routesList = [
   { path: '/projects/:id', name: 'project' },
   { path: '/articles', name: 'articles'},
   { path: '/tests', name: 'tests' },
-  { path: '/documentation', name: 'documentation' }
+  { path: '/documentation', name: 'documentation', externalLink: './jsdoc/index.html' }
 ];
 
 router.initialize(routesList);
 router.navigate('/');
+
+// jsdoc -d=jsdoc -v ./js/*.js
