@@ -30,7 +30,7 @@ const projects = (() => {
     `;
     let articleDOM = document.createElement("article");
     articleDOM.innerHTML = markup;
-    document.querySelector('.home-projects > div').appendChild(articleDOM);
+    document.querySelector('.home-projects').appendChild(articleDOM);
   }
   const refreshProjects = projects => {
     projectList = projects;

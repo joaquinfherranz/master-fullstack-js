@@ -2,20 +2,17 @@ const home = (() => {
   const renderBody = element => {
     let divDOM = document.createElement("div");
     divDOM.classList.add("home-body");
-    divDOM.innerHTML=`<div></div>`
     element.appendChild(divDOM);
   }
   const renderSetionHeader = section => {
     const markup = `
       <img src="../assets/${section.image}">
-      <div class="section-contents">
-        <h1>${section.title}</h1>
-      </div>
+      <h1>${section.title}</h1>
     `;
     let sectionDOM = document.createElement("section");
-    sectionDOM.classList.add(section.className);
+    sectionDOM.classList.add('home', section.className);
     sectionDOM.innerHTML = markup;
-    document.querySelector('.home-body > div').appendChild(sectionDOM);
+    document.querySelector('.home-body').appendChild(sectionDOM);
   }
   const renderProjects = () => {
     renderSetionHeader({
