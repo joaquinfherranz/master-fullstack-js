@@ -61,7 +61,7 @@ img.star {
   filter: invert(.54);
 }
 div.article-image > img {
-  max-width: 80px;
+  max-width: 60px;
   margin-left: 10px;
   margin-top: 5px;
 }
