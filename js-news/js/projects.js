@@ -10,7 +10,7 @@ const projects = (() => {
     'react': 'react-logo-512.png'
   }
   const setProjectLogo = (project) => {
-    const logoUrl = projectLogos[project.name] ? '../assets/' + projectLogos[project.name] : project.owner.avatar_url;
+    const logoUrl = projectLogos[project.name] ? '../assets/logos/' + projectLogos[project.name] : project.owner.avatar_url;
     project.logo_url = logoUrl;
     return project;
   }
