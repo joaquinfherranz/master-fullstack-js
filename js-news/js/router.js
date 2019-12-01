@@ -1,3 +1,4 @@
+/** @function */
 const router = (() => {
   const appName = 'github-js';
   let routes = {};

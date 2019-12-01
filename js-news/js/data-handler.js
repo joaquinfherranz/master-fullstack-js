@@ -1,3 +1,4 @@
+/** @function */
 const dataHandler = (() => {
   return {
     get: async (url, cb) => {
