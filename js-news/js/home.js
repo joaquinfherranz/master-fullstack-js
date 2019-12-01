@@ -1,3 +1,4 @@
+/** @function */
 const home = (() => {
   const renderBody = element => {
     let divDOM = document.createElement("div");
@@ -6,7 +7,7 @@ const home = (() => {
   }
   const renderSetionHeader = section => {
     const markup = `
-      <img class="main-image" src="../assets/${section.image}">
+      <img class="main-image link-image" src="../assets/${section.image}">
       <h1>${section.title}</h1>
       ${section.loadingData ? '<img class="loading-image" src="../assets/loading-'+section.image+'">' : ''}
     `;
