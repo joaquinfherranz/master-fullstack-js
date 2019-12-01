@@ -29,7 +29,21 @@ const home = (() => {
       className: 'home-articles',
       image: 'articles.png',
       title: 'DEV JavaScript articles',
-      loadinData: false
+      loadingData: true
+    });
+  }
+  const renderAppTests = () => {
+    renderSetionHeader({
+      className: 'home-tests',
+      image: 'tests.png',
+      title: 'App tests'
+    });
+  }
+  const renderAppDocumentation = () => {
+    renderSetionHeader({
+      className: 'home-documentation',
+      image: 'documentation.png',
+      title: 'App JSDoc'
     });
   }
   return {
@@ -38,8 +52,8 @@ const home = (() => {
       renderBody(element);
       renderProjects();
       renderArticles();
-      // renderAppTests();
-      // renderAppDocumentation();
+      renderAppTests();
+      renderAppDocumentation();
     }
   }
 })();
