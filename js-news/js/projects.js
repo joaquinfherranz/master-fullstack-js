@@ -1,20 +1,18 @@
 const projects = (() => {
-  let projectList = [];
-  const getProjects = async (renderProjects, refreshProjects) => {
-    const origin = "https://api.github.com";
-    const projectsUrl = origin + "/search/repositories?q=stars:>10000+topic:javascript"
-    let response = await fetch(projectsUrl);
-    let json = await response.json();
-    let items = json.items;      
-    let projects = 
-      items
-        .map((item, index)=>{item.ranking=index+1; return item;})
-        .map(item => {
-          item.name=='react' ? item.owner.avatar_url="../assets/react-logo-512.png": null;
-          return item;
-        });
-    refreshProjects(projects);
-    renderProjects(projects);
+  const getProjects = (json, topRanking) => {
+    let projects = json.items
+      .filter((project, index) => topRanking ? index<topRanking : true)
+      .map((project, index) => {project.ranking=index+1; return project;})
+      .map(project => setProjectLogo (project));
+    return projects;
+  }
+  const projectLogos = [
+    {'react': 'react-logo-512.png'}
+  ]
+  const setProjectLogo = (project) => {
+    const logoUrl = projectLogos[project.name] ? '../assets/' + projectLogos[project.name] : project.owner.avatar_url;
+    project.logo_url = logoUrl;
+    return project;
   }
   const renderProjectArticle = project => {
     const markup = `
@@ -25,15 +23,12 @@ const projects = (() => {
         <div>${project.stargazers_count} <img class="star" src="../assets/icons8-star-15.png"></div>
       </div>
       <div class="article-image">
-        <img src="${project.owner.avatar_url}">
+        <img src="${project.logo_url}">
       </div>
     `;
     let articleDOM = document.createElement("article");
     articleDOM.innerHTML = markup;
     document.querySelector('.home-projects').appendChild(articleDOM);
-  }
-  const refreshProjects = projects => {
-    projectList = projects;
   }
   return {
     render: element => {
@@ -45,15 +40,13 @@ const projects = (() => {
       element.innerHTML = projectsTemplates
     },
     renderProjectList: topRanking => {
-      const renderProjects = projects => {
-        projects
-          .filter(project => topRanking ? project.ranking<topRanking+1 : true)
+      const origin = "https://api.github.com";
+      const url = origin + "/search/repositories?q=stars:>10000+topic:javascript"  
+      const renderProjects = json => {
+        let projects = getProjects(json, topRanking)
           .map(project => renderProjectArticle(project));
       }
-      getProjects(renderProjects, refreshProjects);
-    },
-    getProjects: () => {
-      return projectList;
+      dataHandler.get(url, renderProjects);
     }
   }
 })();
