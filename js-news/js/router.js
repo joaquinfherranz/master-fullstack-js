@@ -1,6 +1,6 @@
 /** @function */
 const router = (() => {
-  const appName = 'github-js';
+  const appName = 'js-news';
   let routes = {};
   let defaultRoute = {};
   let currentRoute = {};
