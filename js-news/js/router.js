@@ -19,25 +19,19 @@ const router = (() => {
           }
         });
       }
-      const addEventListeners = () => {
+      const listenHashchange = () => {
         window.addEventListener('hashchange', e => {
           const to = (hash =>
             hash.indexOf('#') == 0 ? hash.substr(1) : hash
           )(window.location.hash);
           router.navigate(to);
         });
-        document.querySelectorAll('.router-link').forEach(item => {
-          item.addEventListener('click', e => {
-            const to = e.toElement.getAttribute('to');
-            router.navigate(to);
-          });
-        });
       }
       const getRenderElement = () => {
         renderElement = document.getElementById('app');
       }
       addRoutes(routesList);
-      addEventListeners();
+      listenHashchange();
       getRenderElement();
     },
     navigate: to => {
@@ -80,8 +74,17 @@ const router = (() => {
         }        
       } else {
         manageWindowHistory();
-        renderRoute();  
+        renderRoute();
+        router.listenRouterLinks('.router-link');
       }      
+    },
+    listenRouterLinks: selector => {
+      document.querySelectorAll(selector).forEach(item => {
+        item.addEventListener('click', e => {
+          const to = e.toElement.getAttribute('to');
+          router.navigate(to);
+        });
+      });
     }
   }
 })();

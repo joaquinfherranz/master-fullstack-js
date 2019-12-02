@@ -1,4 +1,8 @@
 const projects = (() => {
+  const removeLoadingImage = () => {
+    const loadingImageDOM = document.querySelector('section.home-projects img.loading-image');
+    loadingImageDOM.parentNode.removeChild(loadingImageDOM);
+  }
   const getProjects = (json, topRanking) => {
     let projects = json.items
       .filter((project, index) => topRanking ? index<topRanking : true)
@@ -23,15 +27,16 @@ const projects = (() => {
     return stars > 1000 ? (stars/1000).toFixed(1)+"k" : stars.toString();
   }
   const renderProjectArticle = project => {
+    const to = `to="/projects/${project.id}"`;
     const markup = `
       <div class="article-ranking">${project.ranking.toString().padStart(2,'0')}</div>
       <div class="article-description">
-        <h2 class="link">${project.name}</h2>
-        <div class="link">${project.description}</div>
-        <div class="link"><span class="star">${starSvg}</span><span>${getStars(project.stargazers_count)}</span></div>
+        <h2 class="router-link" ${to}>${project.name}</h2>
+        <div class="router-link" ${to}>${project.description}</div>
+        <div><span class="star router-link" ${to}>${starSvg}</span><span class="router-link" ${to}>${getStars(project.stargazers_count)}</span></div>
       </div>
       <div class="article-image">
-        <img class="logo-image link" src="${project.logo_url}">
+        <img class="logo-image router-link" ${to} src="${project.logo_url}">
       </div>
     `;
     let articleDOM = document.createElement("article");
@@ -52,9 +57,10 @@ const projects = (() => {
       const origin = "https://api.github.com";
       const url = origin + "/search/repositories?q=stars:>10000+topic:javascript"  
       const renderProjects = json => {
-        document.querySelector('.home-projects .loading-image').remove();
+        removeLoadingImage();
         let projects = getProjects(json, topRanking)
           .map(project => renderProjectArticle(project));
+        router.listenRouterLinks('section.home-projects > article .router-link');
       }
       dataHandler.get(url, renderProjects);
     }
