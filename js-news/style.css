@@ -26,11 +26,15 @@ div.home {
   flex-wrap: wrap;
   justify-content: center;
 }
+header {
+  width: 100%;
+}
 header > nav > ul {
   padding-left: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
+  justify-content: center;
 }
 header > nav > ul > li {
   display: flex;
