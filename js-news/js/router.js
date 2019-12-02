@@ -19,19 +19,11 @@ const router = (() => {
           }
         });
       }
-      const listenHashchange = () => {
-        window.addEventListener('hashchange', e => {
-          const to = (hash =>
-            hash.indexOf('#') == 0 ? hash.substr(1) : hash
-          )(window.location.hash);
-          router.navigate(to);
-        });
-      }
       const getRenderElement = () => {
         renderElement = document.getElementById('app');
       }
       addRoutes(routesList);
-      listenHashchange();
+      eventListenerHandler.listenHashchange(router.navigate);
       getRenderElement();
     },
     navigate: to => {
@@ -75,16 +67,9 @@ const router = (() => {
       } else {
         manageWindowHistory();
         renderRoute();
-        router.listenRouterLinks('.router-link');
+        //router.listenRouterLinks('.router-link');
+        eventListenerHandler.listenRouterLinks('.router-link', router.navigate);
       }      
-    },
-    listenRouterLinks: selector => {
-      document.querySelectorAll(selector).forEach(item => {
-        item.addEventListener('click', e => {
-          const to = e.toElement.getAttribute('to');
-          router.navigate(to);
-        });
-      });
     }
   }
 })();

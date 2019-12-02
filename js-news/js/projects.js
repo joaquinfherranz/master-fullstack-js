@@ -60,7 +60,7 @@ const projects = (() => {
         removeLoadingImage();
         let projects = getProjects(json, topRanking)
           .map(project => renderProjectArticle(project));
-        router.listenRouterLinks('section.home-projects > article .router-link');
+          eventListenerHandler.listenRouterLinks('section.home-projects > article .router-link', router.navigate);
       }
       dataHandler.get(url, renderProjects);
     }
