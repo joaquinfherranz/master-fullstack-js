@@ -3,7 +3,7 @@ const routesList = [
   { path: '/projects', name: 'projects' }, //, render: projects.render
   { path: '/projects/:id', name: 'project' },
   { path: '/articles', name: 'articles'},
-  { path: '/tests', name: 'tests' },
+  { path: '/tests', name: 'tests', render: tests.render },
   { path: '/documentation', name: 'documentation', externalLink: './jsdoc/index.html' }
 ];
 

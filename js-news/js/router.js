@@ -7,7 +7,7 @@ const router = (() => {
   let renderElement = {};
   return {
     getCurrentRoute: () => currentRoute,
-    getRoutes: () => console.log('routes:', routes),
+    getRoutes: () => routes,
     initialize: routesList => {
       console.log('router.initialize');
       const addRoutes = routesList => {
