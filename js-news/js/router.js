@@ -1,6 +1,5 @@
 /** @function */
 const router = (() => {
-  const appName = 'js-news';
   let routes = {};
   let defaultRoute = {};
   let currentRoute = {};
@@ -51,7 +50,7 @@ const router = (() => {
       const manageWindowHistory = () => {
         const params = currentRoute.params;
         const title = currentRoute.name;
-        const url = window.location.origin + '/' + appName + '/' + currentRoute.hash;
+        const url = window.location.origin + '/' + currentRoute.hash;
         window.history.pushState(params, title, url);
       }
       const renderRoute = () => {        
