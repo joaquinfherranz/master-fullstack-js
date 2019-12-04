@@ -51,7 +51,7 @@ const home = (() => {
       title: 'Top JavaScript projects on github',
       loadingData: true
     });
-    projects.renderProjectList(3);
+    projects.renderProjecToptList(3);
   }
   const renderArticles = () => {
     renderSetionHeader({
@@ -79,7 +79,7 @@ const home = (() => {
     });
   }
   return {
-    render: element => {      
+    render: element => {
       renderPage(element);
       renderHeader();
       renderBody();

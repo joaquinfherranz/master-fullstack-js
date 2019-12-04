@@ -54,7 +54,7 @@ const projects = (() => {
       }
       element.innerHTML = projectsTemplates
     },
-    renderProjectList: topRanking => {
+    renderProjecToptList: topRanking => {
       const origin = "https://api.github.com";
       const url = origin + "/search/repositories?q=stars:>10000+topic:javascript"  
       const renderProjects = json => {
