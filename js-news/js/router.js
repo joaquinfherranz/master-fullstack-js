@@ -53,7 +53,7 @@ const router = (() => {
         spaBodyDOM.removeAttribute('class');        
         currentRoute.hasOwnProperty('render')
           ? (spaBodyDOM.innerHTML=null, currentRoute.render())
-          : spaBodyDOM.innerHTML = `<div>${JSON.stringify(currentRoute)}</div>`;
+          : spaBodyDOM.innerHTML = `<div><br><br>${JSON.stringify(currentRoute)}</div>`;
       }
       currentRoute = calculateCurrentRoute();
       if (currentRoute.externalLink) {
