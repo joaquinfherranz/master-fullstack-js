@@ -3,7 +3,6 @@ const router = (() => {
   let routes = {};
   let defaultRoute = {};
   let currentRoute = {};
-  let renderElement = {};
   return {
     getCurrentRoute: () => currentRoute,
     getRoutes: () => routes,
@@ -18,12 +17,8 @@ const router = (() => {
           }
         });
       }
-      const getRenderElement = () => {
-        renderElement = document.getElementById('app');
-      }
       addRoutes(routesList);
       eventListenerHandler.listenHashchange(router.navigate);
-      getRenderElement();
     },
     navigate: to => {
       console.log('navivate:', to)
@@ -54,9 +49,11 @@ const router = (() => {
         window.history.pushState(params, title, url);
       }
       const renderRoute = () => {        
+        const spaBodyDOM = document.getElementById('spa-body');
+        spaBodyDOM.removeAttribute('class');        
         currentRoute.hasOwnProperty('render')
-          ? currentRoute.render(renderElement)
-          : renderElement.innerHTML = `<div>${JSON.stringify(currentRoute)}</div>`;
+          ? (spaBodyDOM.innerHTML=null, currentRoute.render())
+          : spaBodyDOM.innerHTML = `<div>${JSON.stringify(currentRoute)}</div>`;
       }
       currentRoute = calculateCurrentRoute();
       if (currentRoute.externalLink) {
@@ -66,8 +63,7 @@ const router = (() => {
       } else {
         manageWindowHistory();
         renderRoute();
-        //router.listenRouterLinks('.router-link');
-        eventListenerHandler.listenRouterLinks('.router-link', router.navigate);
+        eventListenerHandler.listenRouterLinks('#spa-body .router-link', router.navigate);
       }      
     }
   }

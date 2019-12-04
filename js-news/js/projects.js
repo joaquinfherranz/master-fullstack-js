@@ -61,74 +61,9 @@ const projects = (() => {
         removeLoadingImage();
         let projects = getProjects(json, topRanking)
           .map(project => renderProjectArticle(project));
-          eventListenerHandler.listenRouterLinks('section.home-projects > article .router-link', router.navigate);
+          eventListenerHandler.listenRouterLinks('#spa-body section.home-projects > article .router-link', router.navigate);
       }
       dataHandler.get(url, renderProjects);
     }
   }
 })();
-
-/*
-// Si puede consultar consulta
-// Si no puede consultar y no tiene datos espera
-// Si no puede consultar y tiene datos muestra esos datos
-
-// Consulta de proyectos
-// https://api.github.com/search/repositories?q=stars:%3E10000+topic:javascript
-// https://api.github.com/search/repositories?q=stars:>10000+topic:javascript
-{
-  "message": "API rate limit exceeded for 95.122.229.239. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)",
-  "documentation_url": "https://developer.github.com/v3/#rate-limiting"
-}
-// repositories.json consultado el 27/11/2019 00:50
-
-
-//https://developer.github.com/v3/#rate-limiting
-//Increasing the unauthenticated rate limit for OAuth applications
-
-
-
-// Sin restricciones podemos consultar nuestro rate_limit
-https://api.github.com/rate_limit
-
-resources.search.remaining > me quedan 9 consultas
-resources.search.reset > 1574813258
-new Date(1574813258 * 1000)
-Wed Nov 27 2019 01:07:38 GMT+0100 (hora estándar de Europa central)
-
-{
-  "resources": {
-    "core": {
-      "limit": 60,
-      "remaining": 60,
-      "reset": 1574816361
-    },
-    "search": {
-      "limit": 10,
-      "remaining": 9,
-      "reset": 1574813099
-    },
-    "graphql": {
-      "limit": 0,
-      "remaining": 0,
-      "reset": 1574816361
-    },
-    "integration_manifest": {
-      "limit": 5000,
-      "remaining": 5000,
-      "reset": 1574816361
-    }
-  },
-  "rate": {
-    "limit": 60,
-    "remaining": 60,
-    "reset": 1574816361
-  }
-}
-
-Consulto rate_limit,
-si no puedo > espiner y timer con el tiempo q me queda
-si puedo > adelante
-
-
-*/

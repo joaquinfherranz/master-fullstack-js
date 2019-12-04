@@ -1,35 +1,6 @@
 /** @function */
 const home = (() => {
-  const renderPage = element => {
-    let divDOM = document.createElement("div");
-    divDOM.classList.add("home");
-    element.innerHTML = '';
-    element.appendChild(divDOM);
-  }
-  const renderHeader = () => {
-    let divDOM = document.createElement("nav");
-    divDOM.classList.add("home-body");
-    document.querySelector('.home').appendChild(divDOM);
-    const markup = `
-      <header>
-        <nav>
-          <ul>
-            <li class="router-link" to="/">HOME</li>
-            <li class="router-link" to="/projects">PROJECTS</li>
-            <li class="router-link" to="/articles">ARTICLES</li>
-            <li class="router-link" to="/tests">TESTS</li>
-            <li class="router-link" to="/documentation">DOCUMENTATION</li>
-          </ul>
-        </nav>
-      </header>    
-    `
-    document.querySelector('.home').innerHTML = markup;
-  }
-  const renderBody = () => {
-    let divDOM = document.createElement("div");
-    divDOM.classList.add("home-body");
-    document.querySelector('.home').appendChild(divDOM);
-  }
+  const renderBody = () => document.getElementById('spa-body').classList.add("home-body")
   const renderSetionHeader = section => {
     const mainImgSrc = imagesHandler.getImageSrc('../assets/'+section.image);
     const loadingImageSrc = section.loadingData ? imagesHandler.getImageSrc('../assets/loading-'+section.image) : '';
@@ -41,7 +12,7 @@ const home = (() => {
     let sectionDOM = document.createElement("section");
     sectionDOM.classList.add('home', section.className);
     sectionDOM.innerHTML = markup;
-    document.querySelector('.home-body').appendChild(sectionDOM);
+    document.getElementById('spa-body').appendChild(sectionDOM);
   }
   const renderProjects = () => {
     renderSetionHeader({
@@ -79,9 +50,7 @@ const home = (() => {
     });
   }
   return {
-    render: element => {
-      renderPage(element);
-      renderHeader();
+    render: () => {
       renderBody();
       renderProjects();
       renderArticles();
