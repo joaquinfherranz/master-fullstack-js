@@ -27,6 +27,7 @@ const projects = (() => {
     return stars > 1000 ? (stars/1000).toFixed(1)+"k" : stars.toString();
   }
   const renderProjectArticle = project => {
+    const logoSrc = imagesHandler.getImageSrc(project.logo_url);
     const to = `to="/projects/${project.id}"`;
     const markup = `
       <div class="article-ranking">${project.ranking.toString().padStart(2,'0')}</div>
@@ -36,7 +37,7 @@ const projects = (() => {
         <div><span class="star router-link" ${to}>${starSvg}</span><span class="router-link" ${to}>${getStars(project.stargazers_count)}</span></div>
       </div>
       <div class="article-image">
-        <img class="logo-image router-link" ${to} src="${project.logo_url}">
+        <img class="logo-image router-link" ${to} src="${logoSrc}">
       </div>
     `;
     let articleDOM = document.createElement("article");

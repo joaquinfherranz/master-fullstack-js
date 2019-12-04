@@ -31,10 +31,12 @@ const home = (() => {
     document.querySelector('.home').appendChild(divDOM);
   }
   const renderSetionHeader = section => {
+    const mainImgSrc = imagesHandler.getImageSrc('../assets/'+section.image);
+    const loadingImageSrc = section.loadingData ? imagesHandler.getImageSrc('../assets/loading-'+section.image) : '';
     const markup = `
-      <img class="main-image link-image router-link" to="${section.to}" src="../assets/${section.image}">
+      <img class="main-image link-image router-link" to="${section.to}" src="${mainImgSrc}">
       <h1 class="router-link" to="${section.to}">${section.title}</h1>
-      ${section.loadingData ? '<img class="loading-image" src="../assets/loading-'+section.image+'">' : ''}
+      ${section.loadingData ? '<img class="loading-image" src="'+loadingImageSrc+'">' : ''}
     `;
     let sectionDOM = document.createElement("section");
     sectionDOM.classList.add('home', section.className);
