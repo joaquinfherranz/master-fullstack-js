@@ -8,6 +8,8 @@ const routesList = [
 ];
 
 router.initialize(routesList);
+cacheHandler.enableLocalStorage();
+imagesHandler.enableCacheImage();
 router.navigate('/');
 
 // jsdoc -d=jsdoc -v ./js/*.js
