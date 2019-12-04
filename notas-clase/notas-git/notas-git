@@ -1,0 +1,34 @@
+Paso 1: Repositorio local (carpeta física local)
+  - Actualizar rama master local con la rama secundaria local
+    Nos ponemos en rama master:
+    [x]$ git checkout master
+    ejecutamos  
+    [master]$ git merge rama_secundaria
+
+  - borrar rama local secuandaria
+    [master]$ git branch -d rama_secundaria
+
+Paso 2: repositorio remoto
+  - Actualizar rama master remota con la actualizacion de rama master local
+  [master]$ git push origin master
+
+Paso 3: 
+  - borrar rama secundaria remota
+  [master]$ git push origin --delete rama_secundaria
+
+  Nos queda
+    - Rama master local
+    - Rama master remota
+
+ACTUALIZAR CON FICTIZIA
+[master]$ git remote add upstream
+[master]$ git fetch upstream
+[master]$ git merge upstream/master
+
+Para ver los alias, links que tenemos
+git remote -v
+
+Por gitkraken
+- Actualizar carpeta local
+- fetch de upstream a origin
+- pull de origin a local
