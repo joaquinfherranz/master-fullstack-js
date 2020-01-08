@@ -4,6 +4,20 @@ let foto = document.createElement("img");
 foto.style.display="none"
 document.getElementById("resultado").appendChild(foto);  
 
+/**
+ * Función union
+ * @param {String} cadena1 
+ * @param {String} cadena2
+ * @returns {String} Devuelve las cadenas concatenadas
+ */
+function union(cadena1,cadena2){
+  return cadena1+" "+cadena2
+}
+
+/**
+ *  Metodo para devolver datos
+ *  @param {string} url La url para acceder a la peticion AJAX.
+ */
 function peticionAjax(url) {
   var xmlHttp = new XMLHttpRequest();
 
