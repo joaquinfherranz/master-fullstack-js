@@ -1,6 +1,6 @@
 function setup(squareSize, position, instructions) {
-    let x = position.split(' ')[0];
-    let y = position.split(' ')[1];
+    let x = parseInt(position.split(' ')[0]);
+    let y = parseInt(position.split(' ')[1]);
     
     const faces = ['N', 'R', 'S', 'L']; 
     let currentFace = position.split(' ')[2];
@@ -25,7 +25,7 @@ function setup(squareSize, position, instructions) {
                 x = x + 1;
             } else if (currentFace == 'S') {
                 y = y - 1;
-            } else if (currenteFace == 'L') {
+            } else if (currentFace == 'L') {
                 x = x - 1;
             }
             if (x < 0) {
@@ -47,3 +47,5 @@ function setup(squareSize, position, instructions) {
     
     return x + ' ' + y + ' ' + currentFace;
 }
+
+console.assert(setup(5, "1 2 N", ["L", "M", "L", "M", "L", "M", "L", "M", "M"]) == "1 3 N", "Error");
