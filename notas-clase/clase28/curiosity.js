@@ -20,27 +20,27 @@ var NasaRequest = (sol, limitRequets, frequency) => {
   });
 }
 
-// var init = async () => {
-//   const currentValue = await NasaRequest(2080, false, 1000);
-//   console.log("currentValue:", currentValue);
-//   document.getElementById('imgId').setAttribute("src", currentValue[0].img_src);
-// }
-
-// init();
-
-var init = async (sol, times=0) => {
-  let newSol
-  
-    const currentValue = await NasaRequest(sol, false, 1000);
-    console.log("currentValue:", currentValue);
-    document.getElementById('imgId').setAttribute("src", currentValue[0].img_src);
-    newSol=currentValue.sol-1;
-    times=times+1
-    if (times < 10) {
-      setTimeout(()=>init(newSol, times),2000);
-    }
-    
-  
+var init = async () => {
+  const currentValue = await NasaRequest(2180, false, 1000);
+  console.log("currentValue:", currentValue);
+  document.getElementById('imgId').setAttribute("src", currentValue[0].img_src);
 }
 
-init(2080);
+init();
+
+// var init = async (sol, times=0) => {
+//   let newSol
+  
+//     const currentValue = await NasaRequest(sol, false, 1000);
+//     console.log("currentValue:", currentValue);
+//     document.getElementById('imgId').setAttribute("src", currentValue[0].img_src);
+//     newSol=currentValue.sol-1;
+//     times=times+1
+//     if (times < 10) {
+//       setTimeout(()=>init(newSol, times),2000);
+//     }
+    
+  
+// }
+
+// init(2080);
