@@ -16,31 +16,21 @@ function main() {
 
 function stations() {
     const showStations = (stations) => {
-        // const stationHtml = (station) => `
-        //     Estación ${station.nombre_estacion}
-        // `;
         let divHtml = `
-            <a href="/estaciones">Home</a>
+            <a href="/">Home</a>
             <ul>
-            ${stations.map(station=>`<li>${station.nombre_estacion}</li>`).join('')}
+            ${stations.map(station=>`<li><a href="/estacion/${station.id}">${station.nombre_estacion}</a></li>`).join('')}
             </ul>
             `;
-        
-            //${stations.map(station=>"<li>"+station.nombre_estacion+"</li>").join('')}
-            //${stations.map(station=>divHtml+="<li>"+station.nombre_estacion+"</li>")}
-
-
         document.getElementById('app').innerHTML = divHtml;
     }
     fetch('http://airemad.com/api/v1/station')
         .then(response=>response.json())
-        .then(data=>showStations(data));
-    
-    
+        .then(data=>showStations(data));    
 }
 
-function station(id) {
-    document.getElementById('app').textContent = 'viewing estation';
+function station(ctx) {
+    document.getElementById('app').innerHTML = `viewing estation ${ctx.params.id}`;
 }
 
 
