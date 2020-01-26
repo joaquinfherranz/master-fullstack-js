@@ -1,47 +1,61 @@
-//page.base('/routing/');
 
-page('/', main);
-page('/estaciones', stations);
-page('/estacion/:id', station);
-page('*', main);
-page();
+const appElement = document.getElementById('app');
 
-function main() {
-    document.getElementById('app').innerHTML = `
+const main = () => {
+    let html = `
         <p>Bienvenido a la app de enrutado de airmad</p>
         <br>
-        Consulte las estaciones <a href="/estaciones">estaciones</a>
-        `;
+        Consulte las <a href="/estacion">estaciones</a>
+    `;
+    appElement.innerHTML=html;
 }
 
-function stations() {
+const stations = () => {
     const showStations = (stations) => {
-        // const stationHtml = (station) => `
-        //     Estación ${station.nombre_estacion}
-        // `;
-        let divHtml = `
-            <a href="/estaciones">Home</a>
+        let html = `
+            <p>Estas son las distintas estaciones meteorológicas de Madrid:</p>
             <ul>
-            ${stations.map(station=>`<li>${station.nombre_estacion}</li>`).join('')}
+            ${stations.map(station=>`
+                <li>
+                    <strong><a href="/estacion/${station.id}">${station.nombre_estacion}</a></strong>
+                    <br>
+                    <span>${station.direccion}</span>
+                </li>
+            `).join('')}
             </ul>
-            `;
-        
-            //${stations.map(station=>"<li>"+station.nombre_estacion+"</li>").join('')}
-            //${stations.map(station=>divHtml+="<li>"+station.nombre_estacion+"</li>")}
-
-
-        document.getElementById('app').innerHTML = divHtml;
+        `;
+        appElement.innerHTML=html;
     }
     fetch('http://airemad.com/api/v1/station')
-        .then(response=>response.json())
-        .then(data=>showStations(data));
-    
-    
+    .then(response=>response.json())
+    .then(data=>showStations(data));
 }
 
-function station(id) {
-    document.getElementById('app').textContent = 'viewing estation';
+const station = (ctx) => {
+    const id = ctx.params.id;
+    const showStation = (station) => {
+        debugger;
+        let html = `
+            <p>Estas son las distintas estaciones meteorológicas de Madrid:</p>
+            <ul>
+            ${stations.map(station=>`<li><a href="/estacion/${station.id}">${station.nombre_estacion}</a></li>`).join('')}
+            </ul>
+        `;
+        appElement.innerHTML=html;
+    }
+    fetch('http://airemad.com/api/v1/station/'+id)
+    .then(response=>response.json())
+    .then(data=>showStation(data));
 }
 
+const initializeRouter = () => {
+    page('/', main);
+    page('/estacion', stations);
+    page('/estacion/:id', station);
+    page('*', main);
+    
+    page();    
+    page('/');
+}
 
-page('/');
+initializeRouter();
