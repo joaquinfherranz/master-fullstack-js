@@ -11,8 +11,9 @@ const main = () => {
 }
 
 const rootUrl = 'http://airemad.com/api/v1/';
+
 const stations = () => {
-    const showStations = (stations) => {
+    const renderStations = (stations) => {
         const html = `
             <p>Estas son las distintas estaciones meteorológicas de Madrid:</p>
             <ul>
@@ -28,8 +29,8 @@ const stations = () => {
         appElement.innerHTML=html;
     }
     fetch(rootUrl+'station')
-    .then(response=>response.json())
-    .then(data=>showStations(data));
+        .then(response=>response.json())
+        .then(data=>renderStations(data));
 }
 
 const station = (ctx) => {
@@ -42,20 +43,47 @@ const station = (ctx) => {
                 .catch(error=>reject(error));
         });
     }
-    const showStation = (station) => {
-        let html = `
-            <h1>${station.details.nombre_estacion}</h1>
-            <p>Dirección: ${station.details.direccion}<br>Altitud: ${station.details.altitud}</p>
+    const renderStation = (station) => {
+        const renderSection = (sectionContent, lastSection=false) => `<section>${sectionContent}</section>${lastSection?'':'<br>'}`;
+        
+        const renderDetails = (details) => `
+            <h4>${details.nombre_estacion}</h4>
+            <p>Dirección: ${details.direccion}<br>Altitud: ${station.details.altitud}</p>
         `;
+        const renderWeather = (weather) => `<p>Temperatura: ${weather?`${weather.main.temp}º ${weather.weather[0].description}`:'no disponible'}</p>`;
+        
+        const renderPollen = (mediciones) => mediciones
+            ? Object.keys(mediciones).map(polen=>`<p>Polen ${polen}: ${mediciones[polen].valor} (${mediciones[polen].resumen})</p>`).join('')
+            : '<p>Polen: no disponible</p>';
+        
+        const html = 
+            renderSection(renderDetails(station.details))+
+            renderSection(renderWeather(station.weather.list[0]))+
+            renderSection(renderPollen(station.pollen.mediciones));
+
         appElement.innerHTML=html;
     }
     const stationDetailsPromise = stationPromise('station');
     const stationWeatherPromise = stationPromise('weather');
     const stationPollenPromise = stationPromise('pollen');
+    const stationPollutionPromise = stationPromise('pollution');
+    const stationAcusticPromise = stationPromise('acustic');
 
-    Promise.all([stationDetailsPromise, stationWeatherPromise, stationPollenPromise])
-        .then(([details, weather, pollen]) => { 
-            showStation({details:details, weather:weather, pollen:pollen});
+    Promise.all([
+        stationDetailsPromise,
+        stationWeatherPromise,
+        stationPollenPromise,
+        stationPollutionPromise,
+        stationAcusticPromise
+        ])
+        .then(([details, weather, pollen, pollution, acustic]) => { 
+            renderStation({
+                'details': details,
+                'weather': weather,
+                'pollen': pollen,
+                'pollution': pollution,
+                'acustic': acustic
+            });
         });
 
 }
@@ -66,6 +94,8 @@ const initializeRouter = () => {
     page('/estacion/:id', station);
     page('*', main);
     
+    //page.base('/base');
+
     page();    
     page('/');
 }
