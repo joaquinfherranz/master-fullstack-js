@@ -57,19 +57,11 @@ const station = (ctx) => {
         const renderPollen = (mediciones) => mediciones
             ? Object.keys(mediciones).map(polen=>`<p>Polen ${polen}: ${mediciones[polen].valor} (${mediciones[polen].resumen})</p>`).join('')
             : '<p>Polen: no disponible</p>';
-        const renderTemperatureChart = (weather) => {
-
-        };
         const html = 
             renderSection(renderDetails(station.details))+
             renderSection(renderWeather(station.weather.list[0]))+
-            renderSection(renderPollen(station.pollen.mediciones))+;        
+            renderSection(renderPollen(station.pollen.mediciones));        
         appElement.innerHTML=html;
-        
-        new Chartist.Line() .Line('#chart1', {
-            labels: [1, 2, 3, 4],
-            series: [[100, 120, 180, 200]]
-          });
     }
     const stationDetailsPromise = stationPromise('station');
     const stationWeatherPromise = stationPromise('weather');
