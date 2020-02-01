@@ -6,7 +6,7 @@ const renderChart = async () => {
    * Fetch data from Carlos V Station (S002)
    */ 
   let weatherData = await new Promise ((resolve, reject) => {
-    fetch('http://airemad.com/api/v1/weather/S001')
+    fetch('http://airemad.com/api/v1/weather/S002')
         .then(response=>response.json())
         .then(data=>resolve(data))
         .catch(error=>reject(error));
@@ -18,10 +18,10 @@ const renderChart = async () => {
    * Format measurement instants in hours:minutes format
    */
   weatherData = weatherData.list
-    .filter(datum=>datum.dt*1000>Date.now()-ONE_HOUR_MS*3)
-    .filter(datum=>datum.dt*1000<Date.now()+ONE_HOUR_MS*48)
+    .filter(datum=>datum.dt*1000>now-ONE_HOUR_MS*3)
+    .filter(datum=>datum.dt*1000<now+ONE_HOUR_MS*48)
     .map(datum=>{ 
-      datum.dt_hh_mi=datum.dt_txt.split(' ')[1].substring(0,5); // moments in hours & minutes
+      datum.dt_hh_mi= new Date(datum.dt*1000-ONE_HOUR_MS).getHours()+':00';
       datum.temperature=datum.main.temp;
       return datum;
     });
