@@ -1,6 +1,7 @@
-//
+// tests en https://regex101.com/r/o1ADpd/7
+
 const emails = "demo@demo.com, demo_demo@demo.com.ar, demo-demo12312@sub.dom.com.ar, demo@novalido, novalido>@demo.com, demo@novalido-.com, demo@-novalido.com"
 
-emails.split(', ')
+const patron = /[\w]+@[\w]+(?:\.[\w]+)+/;
 
-//https://regex101.com/r/o1ADpd/3
+emails.split(', ').filter(texto=>patron.test(texto));
