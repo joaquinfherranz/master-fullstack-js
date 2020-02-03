@@ -46,12 +46,25 @@ const removeContacto = () => {
       .filter(contacto=>contacto.nombre!=currContacto.nombre);
   localStorage.setItem(APP_KEY, JSON.stringify(contactos));
 }
-
+//<img src="assets/images/avatars/1.jpg" width="80" alt="Profile of Adeline Yong"></img>
 const renderContactos = () => {
+  const renderContacto = (contacto, index) => `
+    <li>
+      <a href="#" class="user-avatar">
+        <img src="1.jpg" width="80" alt="Profile of Adeline Yong">
+      </a>
+      <p>
+          <a href="">${contacto.nombre}</a>
+          <span>Last seen on <i>12th Oct 2014</i></span>
+      </p>
+      <a class="delete" href="#" data-index=${index}><i class="fa fa-close"></i></a>
+    </li>
+  `;
+//    <li>Nombre: ${contacto.nombre}, Móvil: ${contacto.movil} <input class="recuperar-contacto" type="button" data-index="${index}"></li>
   contactosHTML.innerHTML = `
-    <ul>
+    <ul class="user-profiles-list-basic">
       ${getContactos()
-        .map((contacto,index)=>`<li>Nombre: ${contacto.nombre}, Móvil: ${contacto.movil} <input class="recuperar-contacto" type="button" data-index="${index}"></li>`)
+        .map((contacto,index)=>renderContacto(contacto, index))
         .join('')}
     </ul>
   `;
@@ -70,7 +83,7 @@ document.getElementById("guardar").addEventListener("click", () => {
   renderContactos();
 });
 
-document.getElementById("recuperar").addEventListener("click", () => {
+document.getElementById("recuperarTodos").addEventListener("click", () => {
   renderContactos();
 });
 
@@ -83,7 +96,3 @@ document.getElementById("eliminarTodos").addEventListener("click", () => {
   localStorage.removeItem(APP_KEY);
   renderContactos();
 });
-
-// Array.from(document.getElementsByClassName("recuperar-contacto")).map(item=>item.addEventListener("click", (e) => {
-//   console.log('e',e);
-// }));
