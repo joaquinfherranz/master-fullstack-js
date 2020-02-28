@@ -21,11 +21,11 @@ let server = http.createServer((request, response) => {
     sleepAsynch(10, response);
 });
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT); // Abre el servidor
 
 setTimeout(() => {
   console.log('Cerrando Node...');
-  server.close();
+  server.close(); //Cerramos el servidor despues de 3 segundos
   //process.stdout.write("Cerrando Node...")
 }, 3000);
 
