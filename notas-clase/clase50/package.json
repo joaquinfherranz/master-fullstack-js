@@ -1,0 +1,14 @@
+{
+  "name": "proyecto1",
+  "version": "1.0.0",
+  "description": "Prueba primer proyecto node",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm -v",
+    "start": "node -v",
+    "hola": "echo 'Hola mundo!'"
+  },
+  "author": "Joaquin",
+  "license": "ISC",
+  "dependencies": {}
+}
