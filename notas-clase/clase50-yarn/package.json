@@ -1,0 +1,17 @@
+{
+  "name": "proyectoyarn",
+  "version": "1.0.0",
+  "description": "descripcion del proyecto",
+  "main": "index.js",
+  "author": "Joaquin",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "passport": "^0.4.1"
+  },
+  "peerDependencies": {
+    "jquery": "^3.4.1"
+  }
+}
