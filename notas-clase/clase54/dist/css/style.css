@@ -1,0 +1,13 @@
+nav ul {
+  margin: 1;
+  padding: 0;
+  list-style: none; }
+
+nav li {
+  display: inline-block; }
+
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none; }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zY3NzL3N0eWxlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSxTQUFTO0VBQ1QsVUFBVTtFQUNWLGdCQUFnQixFQUFBOztBQUpwQjtFQU9PLHFCQUFxQixFQUFBOztBQVA1QjtFQVVJLGNBQWM7RUFDZCxpQkFBaUI7RUFDakIscUJBQXFCLEVBQUEiLCJmaWxlIjoic3R5bGUuY3NzIn0= */

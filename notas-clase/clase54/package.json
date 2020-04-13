@@ -1,0 +1,34 @@
+{
+  "name": "clase54",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --source-map true --indent-type space --indent-width 2 --output-style nexted -o dist/css src/scss",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*.css",
+    "lint": "eslint src/js",
+    "uglify": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o dist/js/app.js && uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
+    "creardir": "mkdirp dist3/js",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run lint && npm run uglify",
+    "watch:css": "onchange \"src/scss/*.scss\" -- npm run build:css",
+    "watch:js": "onchange  -v \"src/js/*.js\" -- npm run build:js",
+    "watch": "npm run watch:css & npm run watch:js",
+    "watchWindows": "parallelshell \"npm run watch:css\" \"npm run watch:js\"",
+    "start": "npm run watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.7.5",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "mkdirp": "^1.0.4",
+    "node-sass": "^4.13.1",
+    "onchange": "^6.1.0",
+    "parallelshell": "^3.0.1",
+    "postcss-cli": "^7.1.0",
+    "uglify-js-es6": "^2.8.9"
+  }
+}
