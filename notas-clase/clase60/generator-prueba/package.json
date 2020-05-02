@@ -1,0 +1,19 @@
+{
+  "name": "generator-prueba",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "decamelize": "^4.0.0",
+    "uppercamelcase": "^3.0.0",
+    "yeoman-generator": "^4.8.2"
+  },
+  "files": [
+    "app"
+  ]
+}
