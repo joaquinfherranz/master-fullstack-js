@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Pi proyecto web usando Express</h1>
+<p>Hola Mundo Express</p>
+<form action = "./process_post" method ="POST">
+  First Name: <input type = "text" name = "first_name">
+  <br>
+  Last Name: <input type = "text" name = "last_name">
+  <input type = "submit" value = "Submit">
+ </form>
+ <h3>File Upload:</h3>
+ Select a file to upload: <br />
+
+ <form action = "./file_upload" method ="POST" enctype = "multipart/form-data">
+ <input type="file" name="file" size="50" />
+ <br />
+ <input type = "submit" value = "Upload File" />
+ </form>
+</body>
+</html>
