@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    title Jade
+    script(type='text/javascript').
+      const foo = true;
+      let bar = function() {};
+      if (foo) {
+      bar(1 + 5)
+      }
+  body
+    h1 Películas
+    input#nombre(type="text", placeholder="your name")
+    button#getFilm(type="button")
+    #container.col
+      ul
+        if data
+          each film, i in data
+            li = data.name
+    script(src='./script.js')
+
+        
