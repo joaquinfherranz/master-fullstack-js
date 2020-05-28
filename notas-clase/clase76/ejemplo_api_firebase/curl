@@ -1,0 +1,13 @@
+curl -d '{"usuario":"joaquin", "subject":"probando post en firebase"}' -H "Content-Type: application/json" -X POST https://us-central1-appfirebase-53b29.cloudfunctions.net/entries
+
+name:John Doe
+subject:dev.to
+message:Hello dev.to!
+
+curl -d '{"usuario":"ruperto", "subject":"el pitufo"}' -H "Content-Type: application/json" -X POST https://us-central1-appfirebase-53b29.cloudfunctions.net/entries
+
+//curl -d '[{"usuario":"ruperto", "subject":"el pitufo"}, {"usuario":"ruperto2", "subject":"el pitufo2"}]' -H "Content-Type: application/json" -X POST https://us-central1-appfirebase-53b29.cloudfunctions.net/entries
+
+curl -d '{"usuario":"ruperto", "subject":"el pitufo"}' -H "Content-Type: application/json" -X POST https://us-central1-appfirebase-53b29.cloudfunctions.net/entries
+
+curl -d '{"usuario":"rupertita", "subject":"la pitufita"}' -H "Content-Type: application/json" -X POST https://us-central1-appfirebase-53b29.cloudfunctions.net/entries
