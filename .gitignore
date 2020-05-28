@@ -8,3 +8,5 @@ package-lock.json
 # Visual Studio Code generated files
 .vscode
 
+# Enviroment
+.env
