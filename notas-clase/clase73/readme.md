@@ -52,3 +52,17 @@ makeInviteCode()
   hint: "Data is encrypted … We should probably check the encryption type in order to decrypt it…"
 }
 
+desencriptamos el data desde https://www.base64decode.org/
+
+In order to generate the invite code, make a POST request to /api/invite/generate
+
+definimos 
+
+function inviteCode(){$.ajax({type:"POST",dataType:"json",url:'/api/invite/generate',success:function(a){console.log(a)},error:function(a){console.log(a)}})}
+
+{
+  data: {
+    code:  "WVNTSUwtWllYWEwtUkJJT0wtRlhTU1EtUUJKQ0k=",
+    format: "encoded"
+  }
+}
