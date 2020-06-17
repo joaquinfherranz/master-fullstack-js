@@ -1,0 +1,4 @@
+https://medium.com/@nparsons08/introducing-mongoose-to-your-node-js-and-restify-api-9c16a93c8d87
+
+para arrancar mongoose
+ mongod --config /usr/local/etc/mongod.conf
